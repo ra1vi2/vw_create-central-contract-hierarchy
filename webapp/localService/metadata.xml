@@ -1,0 +1,706 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="VWKS.NLP_CCTR_CTR_CREATE_SRV_01" xml:lang="en"
+			sap:schema-version="1">
+			<EntityType Name="ContractFieldList" sap:content-version="1">
+				<Key><PropertyRef Name="Fieldname"/></Key><Property Name="Fieldname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Target Field"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fielddesc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Short text"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="CCTRDraftID" sap:content-version="1">
+				<Key><PropertyRef Name="ContractDraftUUID"/></Key><Property Name="ContractDraftUUID" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="xVWKSxNLP_CCTR_C_CNTR_H_CREATEType" sap:label="ConsumptionView: Contract HeaderCreate" sap:content-version="1">
+				<Key><PropertyRef Name="Guid"/></Key><Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:label="GUID 16"/><Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/><Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Goods Supplier"
+					sap:value-list="standard"/><Property Name="AP_Material" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:text="ProcessIndicatorText"
+					sap:label="Process Indicator"/><Property Name="PurchaseContractType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Purchasing Doc. Type"
+					sap:value-list="fixed-values"/><Property Name="ContractDescription" Type="Edm.String" MaxLength="40" sap:label="Contract Name"/><Property Name="ValidityStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Validity Per. Start"/><Property Name="ValidityEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Validity Period End"/><Property Name="Currency" Type="Edm.String" MaxLength="5" sap:text="CurrencyName" sap:label="Currency" sap:value-list="standard"
+					sap:semantics="currency-code"/><Property Name="PurchaseContractTargetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Target Value"/><Property Name="TargetQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Target Quantity"/><Property Name="PaymentTerms" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="PaymentTermsName"
+					sap:label="Payment terms" sap:value-list="standard"/><Property Name="Incoterm" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="IncotermsClassificationName"
+					sap:label="Incoterms" sap:value-list="standard"/><Property Name="ShippingInstruction" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Shipping Instr."
+					sap:value-list="standard"/><Property Name="ProcessIndicatorText" Type="Edm.String" MaxLength="60" sap:label="Process Indicator Text" sap:creatable="false"
+					sap:updatable="false"/><Property Name="CurrencyName" Type="Edm.String" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false"/><Property Name="IncotermsClassificationName" Type="Edm.String" MaxLength="30" sap:label="Description" sap:creatable="false"
+					sap:updatable="false"/><Property Name="PaymentTermsName" Type="Edm.String" MaxLength="30" sap:label="Description" sap:creatable="false" sap:updatable="false"/><NavigationProperty Name="to_Items" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_DB810631A7714DE738F8919710AE509C"
+					FromRole="FromRole_assoc_DB810631A7714DE738F8919710AE509C" ToRole="ToRole_assoc_DB810631A7714DE738F8919710AE509C"/></EntityType>
+			<EntityType Name="xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" sap:label="ConsumptionView: Contract Item Create" sap:content-version="1">
+				<Key><PropertyRef Name="Guid"/></Key><Property Name="ContractNetPriceAmount_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="EvalDrcptSettlmtIsAllowed_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="GoodsReceiptIsExpected_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="GoodsReceiptIsNonValuated_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="InvoiceIsExpected_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="InvoiceIsGoodsReceiptBased_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="IsInfoAtRegistration_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="IsOrderAcknRqd_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ItemTargetAmount_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MaterialGroup_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NetPriceQuantity_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NoDaysReminder1_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NoDaysReminder2_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NoDaysReminder3_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OrderPriceUnit_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OrderQuantityUnit_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OrdPriceUnitToOrderUnitNmrtr_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OrdPriceUnitToOrderUnitDnmntr_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OverdelivTolrtdLmtRatioInPct_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PriceIsTobBePrinted_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ProductType_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PurchaseContractItemText_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Purchasingcentralmaterial_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Purchasingdocumentitemcategory_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PurgDocEstimatedPrice_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PurgDocOrderAcknNumber_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PurgDocReleaseOrderQuantity_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="RequirementTracking_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ShippingInstruction_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="StockType_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SupplierConfirmationControlKey_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SupplierMaterialNumber_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TargetQuantity_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TaxCode_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="UnderdelivTolrtdLmtRatioInPct_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="UnlimitedOverdeliveryIsAllowed_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:label="GUID 16"/><Property Name="HeaderGuid" Type="Edm.Guid" sap:label="GUID 16"/><Property Name="PurchasingDocument" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchasing Document"
+					sap:creatable="false" sap:updatable="false"/><Property Name="PurchasingDocumentItem" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Item"
+					sap:creatable="false" sap:updatable="false"/><Property Name="PurchaseContractItemText" Type="Edm.String" MaxLength="40" sap:field-control="PurchaseContractItemText_fc"
+					sap:label="Short Text"/><Property Name="ConnectedSystem" Type="Edm.String" MaxLength="10" sap:label="Connected System ID" sap:creatable="false"
+					sap:updatable="false"/><Property Name="PurchaseRequisition" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchase Requisition"
+					sap:creatable="false" sap:updatable="false"/><Property Name="PurchaseRequisitionItem" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Item of requisition"
+					sap:creatable="false" sap:updatable="false"/><Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/><Property Name="Purchasingdocumentitemuniqueid" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Document Item"/><Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"/><Property Name="Purchasingcentralmaterial" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase"
+					sap:field-control="Purchasingcentralmaterial_fc" sap:label="Material"/><Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Material type"/><Property Name="ContractNetPriceAmount" Type="Edm.Decimal" Precision="12" Scale="3" sap:field-control="ContractNetPriceAmount_fc"
+					sap:label="Net Order Price"/><Property Name="OrderPriceUnit" Type="Edm.String" MaxLength="3" sap:field-control="OrderPriceUnit_fc" sap:label="Order Price Unit"
+					sap:value-list="standard" sap:semantics="unit-of-measure"/><Property Name="VolumeUnit" Type="Edm.String" MaxLength="3" sap:label="Volume unit" sap:semantics="unit-of-measure"/><Property Name="OrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:field-control="OrderQuantityUnit_fc" sap:label="Order Unit"
+					sap:value-list="standard" sap:semantics="unit-of-measure"/><Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:field-control="MaterialGroup_fc"
+					sap:text="MaterialGroupName" sap:label="Material Group" sap:value-list="standard"/><Property Name="MaterialGroupName" Type="Edm.String" MaxLength="20" sap:label="Product Group Description" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Customer"/><Property Name="SubContractor" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Supplier"/><Property Name="ReferenceDeliveryAddress" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Address"/><Property Name="ManualDeliveryAddress" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Address"/><Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant"/><Property Name="AccountAssignmentCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Acct Assignment Cat."/><Property Name="GoodsReceiptIsExpected" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="GoodsReceiptIsExpected_fc"
+					sap:label="Goods receipt"/><Property Name="NetPriceQuantity" Type="Edm.Decimal" Precision="5" Scale="0" sap:field-control="NetPriceQuantity_fc" sap:label="Price unit"/><Property Name="MultipleAcctAssgmtDistribution" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:label="Distrib. Indicator"/><Property Name="TargetQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:field-control="TargetQuantity_fc"
+					sap:label="Target Quantity"/><Property Name="TargetAmount" Type="Edm.Decimal" Precision="14" Scale="3" sap:label="OA Target Value"/><Property Name="ItemTargetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:field-control="ItemTargetAmount_fc"
+					sap:label="Item Target Value"/><Property Name="DocumentCurrency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:creatable="false" sap:updatable="false"
+					sap:semantics="currency-code"/><Property Name="OrdPriceUnitToOrderUnitDnmntr" Type="Edm.Decimal" Precision="5" Scale="0"
+					sap:field-control="OrdPriceUnitToOrderUnitDnmntr_fc" sap:label="Quantity Conversion"/><Property Name="OrdPriceUnitToOrderUnitNmrtr" Type="Edm.Decimal" Precision="5" Scale="0" sap:field-control="OrdPriceUnitToOrderUnitNmrtr_fc"
+					sap:label="Quantity Conversion"/><Property Name="Purchasingdocumentitemcategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:field-control="Purchasingdocumentitemcategory_fc" sap:label="Item Category" sap:value-list="fixed-values"/><Property Name="SupplierMaterialNumber" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase"
+					sap:field-control="SupplierMaterialNumber_fc" sap:label="Supplier Mat. No."/><Property Name="EvalDrcptSettlmtIsAllowed" Type="Edm.Boolean" sap:display-format="UpperCase"
+					sap:field-control="EvalDrcptSettlmtIsAllowed_fc" sap:label="Eval. Receipt Sett."/><Property Name="UnderdelivTolrtdLmtRatioInPct" Type="Edm.Decimal" Precision="3" Scale="1"
+					sap:field-control="UnderdelivTolrtdLmtRatioInPct_fc" sap:label="Underdel. Tolerance"/><Property Name="PriceIsTobBePrinted" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="PriceIsTobBePrinted_fc"
+					sap:label="Print Price"/><Property Name="SupplierConfirmationControlKey" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase"
+					sap:field-control="SupplierConfirmationControlKey_fc" sap:label="Confirmation Control" sap:value-list="fixed-values"/><Property Name="OverdelivTolrtdLmtRatioInPct" Type="Edm.Decimal" Precision="3" Scale="1" sap:field-control="OverdelivTolrtdLmtRatioInPct_fc"
+					sap:label="Overdeliv. Tolerance"/><Property Name="UnlimitedOverdeliveryIsAllowed" Type="Edm.Boolean" sap:display-format="UpperCase"
+					sap:field-control="UnlimitedOverdeliveryIsAllowed_fc" sap:label="Unltd Overdelivery"/><Property Name="InvoiceIsExpected" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="InvoiceIsExpected_fc"
+					sap:label="Invoice receipt"/><Property Name="InvoiceIsGoodsReceiptBased" Type="Edm.Boolean" sap:display-format="UpperCase"
+					sap:field-control="InvoiceIsGoodsReceiptBased_fc" sap:label="GR-Based Inv. Verif."/><Property Name="PurgDocPriceDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Last forecast"/><Property Name="IsInfoRecordUpdated" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Info Record Update"/><Property Name="PurgDocReleaseOrderQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:field-control="PurgDocReleaseOrderQuantity_fc"
+					sap:label="Stand.rel.order.qty."/><Property Name="PurgDocOrderAcknNumber" Type="Edm.String" MaxLength="20" sap:field-control="PurgDocOrderAcknNumber_fc"
+					sap:label="Order Acknowledgment"/><Property Name="PurgDocEstimatedPrice" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="PurgDocEstimatedPrice_fc"
+					sap:label="Estimated Price"/><Property Name="IsInfoAtRegistration" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:field-control="IsInfoAtRegistration_fc" sap:label="Info at Registration"/><Property Name="NoDaysReminder1" Type="Edm.Decimal" Precision="3" Scale="0" sap:field-control="NoDaysReminder1_fc"
+					sap:label="1st Reminder/Exped."/><Property Name="NoDaysReminder2" Type="Edm.Decimal" Precision="3" Scale="0" sap:field-control="NoDaysReminder2_fc"
+					sap:label="2nd Reminder/Exped."/><Property Name="NoDaysReminder3" Type="Edm.Decimal" Precision="3" Scale="0" sap:field-control="NoDaysReminder3_fc"
+					sap:label="3rd Reminder/Exped."/><Property Name="StockType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:field-control="StockType_fc"
+					sap:label="Stock Type" sap:value-list="standard"/><Property Name="TaxCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:field-control="TaxCode_fc" sap:label="Tax Code"
+					sap:value-list="standard"/><Property Name="RequirementTracking" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"
+					sap:field-control="RequirementTracking_fc" sap:label="Req. Tracking Number"/><Property Name="IsOrderAcknRqd" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="IsOrderAcknRqd_fc"
+					sap:label="Acknowledgment Reqd"/><Property Name="ShippingInstruction" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"
+					sap:field-control="ShippingInstruction_fc" sap:label="Shipping Instr." sap:value-list="standard"/><Property Name="GoodsReceiptIsNonValuated" Type="Edm.Boolean" sap:display-format="UpperCase"
+					sap:field-control="GoodsReceiptIsNonValuated_fc" sap:label="GR non-valuated"/><Property Name="ServicePerformer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Service Performer"/><Property Name="ProductType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:field-control="ProductType_fc"
+					sap:label="Product Type Group" sap:value-list="fixed-values"/><Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Storage location"
+					sap:creatable="false" sap:updatable="false"/><Property Name="IsEndofPurposeBlocked" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Busin. Purp. Cmpltd."/><Property Name="PurchasingContractDeletionCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:label="Deletion indicator"/><Property Name="TextIsDeleted" Type="Edm.Boolean" sap:display-format="UpperCase"
+					sap:label="Boolean Variable (X = True, - = False, Space = Unknown)" sap:creatable="false" sap:updatable="false"/><Property Name="CntrlPurContractGRQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderPriceUnit" sap:creatable="false"
+					sap:updatable="false"/><Property Name="CntrlPurContractGRAmount" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="DocumentCurrency"
+					sap:label="Central Purchase Contract GR Amount" sap:creatable="false" sap:updatable="false"/><Property Name="ContractConsumptionInPct" Type="Edm.Decimal" Precision="18" Scale="3" sap:label="Consumption Percentage"
+					sap:creatable="false" sap:updatable="false"/><Property Name="CntrlPurContrGRConsumptionPct" Type="Edm.Decimal" Precision="18" Scale="3" sap:label="GR Consumption Percentage"
+					sap:creatable="false" sap:updatable="false"/><NavigationProperty Name="to_Header" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_DB810631A7714DE738F8919710AE509C"
+					FromRole="ToRole_assoc_DB810631A7714DE738F8919710AE509C" ToRole="FromRole_assoc_DB810631A7714DE738F8919710AE509C"/><NavigationProperty Name="to_ConfirmationControlVH" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_A7509BF3AA0E43DB9C91D5489D4FF263"
+					FromRole="FromRole_assoc_A7509BF3AA0E43DB9C91D5489D4FF263" ToRole="ToRole_assoc_A7509BF3AA0E43DB9C91D5489D4FF263"/><NavigationProperty Name="to_ContractPrdTypeVH" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"
+					FromRole="FromRole_assoc_64A6C860665E5A3D7BBE4C3BFE71DC51" ToRole="ToRole_assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"/><NavigationProperty Name="to_MaterialGroupValueHelp" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_FAA34FD56F4D2CA9084F73FFC849E502"
+					FromRole="FromRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502" ToRole="ToRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"/><NavigationProperty Name="to_Mm_Shipinstructionvaluehelp"
+					Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_1756DF8C830919FD80C2147C861CE834"
+					FromRole="FromRole_assoc_1756DF8C830919FD80C2147C861CE834" ToRole="ToRole_assoc_1756DF8C830919FD80C2147C861CE834"/><NavigationProperty Name="to_OrderPriceUnit" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_504A7D14C1805E5882B355D982E004B2"
+					FromRole="FromRole_assoc_504A7D14C1805E5882B355D982E004B2" ToRole="ToRole_assoc_504A7D14C1805E5882B355D982E004B2"/><NavigationProperty Name="to_OrderQuantityUnit" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_6653F83EDA73244F4CFE9508EE79E64E"
+					FromRole="FromRole_assoc_6653F83EDA73244F4CFE9508EE79E64E" ToRole="ToRole_assoc_6653F83EDA73244F4CFE9508EE79E64E"/><NavigationProperty Name="to_Purcontracttaxcodevh" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_C35CBD9C51D8571FC830324A638316AF"
+					FromRole="FromRole_assoc_C35CBD9C51D8571FC830324A638316AF" ToRole="ToRole_assoc_C35CBD9C51D8571FC830324A638316AF"/><NavigationProperty Name="to_PurCtrStockType" Relationship="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"
+					FromRole="FromRole_assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00" ToRole="ToRole_assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"/></EntityType>
+			<EntityType Name="C_CntrlPurContrMaterialVHType" sap:label="C-View for Material F4 Help in Central Purchase Contract"
+				sap:content-version="1">
+				<Key><PropertyRef Name="Material"/><PropertyRef Name="OpnCtlgItemID"/><PropertyRef Name="Language"/><PropertyRef Name="Plant"/></Key><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"/><Property Name="OpnCtlgItemID" Type="Edm.Int32" Nullable="false" sap:label="Catalog Item Key"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant"/><Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/><Property Name="OpnCtlgWebServiceID" Type="Edm.String" MaxLength="20" sap:label="Catalog Web Serv ID"/><Property Name="MaterialGroup" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Material Group"/><Property Name="MaterialBaseUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Unit Of Measure"/><Property Name="ProcurementHubSourceSystem" Type="Edm.String" MaxLength="10" sap:label="Connected System ID"/><Property Name="IsBusinessPurposeCompleted" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Purpose Completed"/><Property Name="MaterialName" Type="Edm.String" MaxLength="255" sap:label="Material Description"/><Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Material Type"/><Property Name="MaterialTypeName" Type="Edm.String" MaxLength="25" sap:label="Material Type Description"/><Property Name="MaterialGroupName" Type="Edm.String" MaxLength="20" sap:label="Material Group Name"/></EntityType>
+			<EntityType Name="C_CntrlPurContrTypeValueHelpType" sap:label="View for Contract Type F4 Help in Central Purchase Contract"
+				sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="PurchasingDocumentType"/></Key><Property Name="PurchasingDocumentType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase"
+					sap:text="PurchasingDocumentTypeName" sap:label="Purchasing Doc. Type"/><Property Name="PurchasingDocumentTypeName" Type="Edm.String" MaxLength="20" sap:label="Doc. Type Descript."/></EntityType>
+			<EntityType Name="C_ContractPrdTypeVHType" sap:label="Value help for Product Type Group" sap:content-version="1">
+				<Key><PropertyRef Name="ProductType"/></Key><Property Name="ProductType" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:text="ProductTypeName"
+					sap:label="Product Type Group"/><Property Name="ProductTypeName" Type="Edm.String" MaxLength="40" sap:label="Description"/></EntityType>
+			<EntityType Name="C_Mm_ConfirmationControlVHType" sap:label="Confirmation Control Value Help" sap:content-version="1">
+				<Key><PropertyRef Name="SupplierConfirmationControlKey"/></Key><Property Name="SupplierConfirmationControlKey" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase"
+					sap:text="SupplierConfControlKeyName" sap:label="Confirmation Control"/><Property Name="SupplierConfControlKeyName" Type="Edm.String" MaxLength="20" sap:label="Description"/></EntityType>
+			<EntityType Name="C_MM_IncotermValueHelpType" sap:label="Incoterm Value Help" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="IncotermsClassification"/><PropertyRef Name="IncotermsVersion"/></Key><Property Name="IncotermsClassification" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase"
+					sap:text="IncotermsClassificationName" sap:label="Incoterms"/><Property Name="IncotermsVersion" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase"
+					sap:label="Incoterms Version"/><Property Name="IncotermsClassificationName" Type="Edm.String" MaxLength="30" sap:label="Description"/><Property Name="LocationIsMandatory" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Location Mandatory"/></EntityType>
+			<EntityType Name="C_MM_MaterialGroupValueHelpType" sap:label="Material Group Value Help" sap:content-version="1">
+				<Key><PropertyRef Name="MaterialGroup"/></Key><Property Name="MaterialGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:display-format="UpperCase" sap:text="MaterialGroupName"
+					sap:label="Product Group"/><Property Name="MaterialGroupText" Type="Edm.String" MaxLength="60" sap:label="Material Group Text"/><Property Name="MaterialGroupName" Type="Edm.String" MaxLength="20" sap:label="Product Group Description"/></EntityType>
+			<EntityType Name="C_MM_PaymentTermValueHelpType" sap:label="Payment Term Value Help" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="PaymentTerms"/><PropertyRef Name="PaymentTermsValidityMonthDay"/></Key><Property Name="PaymentTerms" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="PaymentTermsName"
+					sap:label="Payment Terms"/><Property Name="PaymentTermsValidityMonthDay" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative"
+					sap:label="Day Limit"/><Property Name="PaymentTermsName" Type="Edm.String" MaxLength="30" sap:label="Description"/><Property Name="PaytTrmsCndnExplanationText" Type="Edm.String" MaxLength="200" sap:display-format="UpperCase"
+					sap:label="Payment term explanation"/><Property Name="CashDiscount1Days" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Cash Discount Days 1"/><Property Name="CashDiscount1Percent" Type="Edm.Decimal" Precision="5" Scale="3" sap:label="Disc. Percent 1"/><Property Name="CashDiscount2Days" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Cash Discount Days 2"/><Property Name="CashDiscount2Percent" Type="Edm.Decimal" Precision="5" Scale="3" sap:label="Disc. Percent 2"/><Property Name="NetPaymentDays" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Days Net"/></EntityType>
+			<EntityType Name="C_Mm_ShipinstructionvaluehelpType" sap:label="Shipping Instruction Value Help" sap:content-version="1">
+				<Key><PropertyRef Name="ShippingInstruction"/></Key><Property Name="ShippingInstruction" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase"
+					sap:text="ShippingInstructionName" sap:label="Shipping Instruction"/><Property Name="ShippingInstructionName" Type="Edm.String" MaxLength="30" sap:label="Shipping Instruction Name"/></EntityType>
+			<EntityType Name="C_MM_SupplierValueHelpType" sap:label="Supplier" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="Supplier"/><PropertyRef Name="CompanyCode"/></Key><Property Name="Supplier" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="SupplierName"
+					sap:label="Vendor"/><Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"
+					sap:value-list="standard"/><Property Name="SupplierName" Type="Edm.String" MaxLength="80" sap:label="Name of Supplier"/><Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country Key"/><Property Name="CityName" Type="Edm.String" MaxLength="40" sap:label="City"/><Property Name="PostalCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Postal Code"/><Property Name="Region" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Region"/><Property Name="SortField" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Search term"/><Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:label="First name"/><Property Name="LastName" Type="Edm.String" MaxLength="40" sap:label="Last name"/><Property Name="OrganizationBPName1" Type="Edm.String" MaxLength="40" sap:label="Name 1"/><Property Name="OrganizationBPName2" Type="Edm.String" MaxLength="40" sap:label="Name 2"/><Property Name="OrganizationBPName3" Type="Edm.String" MaxLength="40" sap:label="Name 3"/><Property Name="OrganizationBPName4" Type="Edm.String" MaxLength="40" sap:label="Name 4"/><Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Authorization"/><Property Name="SupplierAccountGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Account group"/></EntityType>
+			<EntityType Name="I_CntrlPurContrItmCategoryVHType" sap:label="Central Purchase Contract Item Category Value Help" sap:value-list="true"
+				sap:content-version="1">
+				<Key><PropertyRef Name="PurchasingDocumentType"/><PropertyRef Name="PurchasingDocumentCategory"/><PropertyRef Name="PurchasingDocumentItemCategory"/></Key><Property Name="PurchasingDocumentType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase"
+					sap:label="Purchasing Doc. Type"/><Property Name="PurchasingDocumentCategory" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase"
+					sap:label="Purch. Doc. Category"/><Property Name="PurchasingDocumentItemCategory" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase"
+					sap:text="PurchasingDocumentItemCategory_Text" sap:label="Item category"/><Property Name="PurchasingDocumentItemCategory_Text" Type="Edm.String" MaxLength="20" sap:label="Text for Item Cat." sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="I_CompanyCodeStdVHType" sap:label="Company Code" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="CompanyCode"/></Key><Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="CompanyCodeName"
+					sap:label="Company Code"/><Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25" sap:label="Company Name"/></EntityType>
+			<EntityType Name="I_CurrencyType" sap:label="Currency" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="Currency"/></Key><Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:text="Currency_Text" sap:label="Currency"
+					sap:semantics="currency-code"/><Property Name="Currency_Text" Type="Edm.String" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false"/><Property Name="Decimals" Type="Edm.Byte" sap:label="Decimal Places"/><Property Name="CurrencyISOCode" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="ISO Code"/><Property Name="AlternativeCurrencyKey" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Alternative Key"/><Property Name="IsPrimaryCurrencyForISOCrcy" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Primary"/></EntityType>
+			<EntityType Name="I_PurcontracttaxcodevhType" sap:label="Tax code for Contract Item" sap:content-version="1">
+				<Key><PropertyRef Name="TaxCode"/><PropertyRef Name="TaxCalculationProcedure"/><PropertyRef Name="Language"/></Key><Property Name="TaxCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Tax Code"/><Property Name="TaxCalculationProcedure" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase"
+					sap:label="Procedure"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="TaxCodeName" Type="Edm.String" MaxLength="50" sap:label="Tax Code Name"/></EntityType>
+			<EntityType Name="I_PurCtrStockTypeType" sap:label="Purchase Contract Stock Type" sap:content-version="1">
+				<Key><PropertyRef Name="StockType"/></Key><Property Name="StockType" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Stock Type"/><Property Name="Language" Type="Edm.String" MaxLength="2" sap:label="Lang."/><Property Name="StockTypeName" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Description"/></EntityType>
+			<EntityType Name="I_UnitOfMeasureType" sap:label="Unit of Measure" sap:content-version="1">
+				<Key><PropertyRef Name="UnitOfMeasure"/></Key><Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="UnitOfMeasure_Text" sap:label="Unit of Measure"
+					sap:semantics="unit-of-measure"/><Property Name="UnitOfMeasure_Text" Type="Edm.String" MaxLength="30" sap:label="UoM Text" sap:creatable="false" sap:updatable="false"/><Property Name="UnitOfMeasureSAPCode" Type="Edm.String" MaxLength="3" sap:label="Internal SAP Code"/><Property Name="UnitOfMeasureISOCode" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="ISO code"/><Property Name="IsPrimaryUnitForISOCode" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Primary code"/><Property Name="UnitOfMeasureNumberOfDecimals" Type="Edm.Int16" sap:label="Decimal Rounding"/><Property Name="UnitOfMeasureIsCommercial" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Commercial meas.unit"/><Property Name="UnitOfMeasureDimension" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Dimension"/><Property Name="SIUnitCnvrsnRateNumerator" Type="Edm.Int32" sap:label="Numerator"/><Property Name="SIUnitCnvrsnRateDenominator" Type="Edm.Int32" sap:label="Denominator"/><Property Name="SIUnitCnvrsnRateExponent" Type="Edm.Int16" sap:label="Exponent"/><Property Name="SIUnitCnvrsnAdditiveValue" Type="Edm.Decimal" Precision="9" Scale="6" sap:label="Additive constant"/><Property Name="UnitOfMeasureDspExponent" Type="Edm.Int16" sap:label="float. point exp."/><Property Name="UnitOfMeasureDspNmbrOfDcmls" Type="Edm.Int16" sap:label="Decimal Places"/><Property Name="UnitOfMeasureTemperature" Type="Edm.Double" sap:unit="UnitOfMeasureTemperatureUnit" sap:label="Temperature"/><Property Name="UnitOfMeasureTemperatureUnit" Type="Edm.String" MaxLength="3" sap:label="Temperature unit" sap:semantics="unit-of-measure"/><Property Name="UnitOfMeasurePressure" Type="Edm.Double" sap:unit="UnitOfMeasurePressureUnit" sap:label="Pressure Value"/><Property Name="UnitOfMeasurePressureUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Pressure" sap:semantics="unit-of-measure"/></EntityType>
+			<Association Name="assoc_A7509BF3AA0E43DB9C91D5489D4FF263" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_A7509BF3AA0E43DB9C91D5489D4FF263"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_Mm_ConfirmationControlVHType" Multiplicity="1"
+				Role="ToRole_assoc_A7509BF3AA0E43DB9C91D5489D4FF263"/></Association>
+			<Association Name="assoc_64A6C860665E5A3D7BBE4C3BFE71DC51" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_ContractPrdTypeVHType" Multiplicity="0..1" Role="ToRole_assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"/></Association>
+			<Association Name="assoc_FAA34FD56F4D2CA9084F73FFC849E502" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_MaterialGroupValueHelpType" Multiplicity="0..1"
+				Role="ToRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"><PropertyRef Name="MaterialGroup"/></Principal>
+					<Dependent Role="FromRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"><PropertyRef Name="MaterialGroup"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_1756DF8C830919FD80C2147C861CE834" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_1756DF8C830919FD80C2147C861CE834"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_Mm_ShipinstructionvaluehelpType" Multiplicity="0..1"
+				Role="ToRole_assoc_1756DF8C830919FD80C2147C861CE834"/></Association>
+			<Association Name="assoc_504A7D14C1805E5882B355D982E004B2" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_504A7D14C1805E5882B355D982E004B2"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_UnitOfMeasureType" Multiplicity="0..1" Role="ToRole_assoc_504A7D14C1805E5882B355D982E004B2"/></Association>
+			<Association Name="assoc_6653F83EDA73244F4CFE9508EE79E64E" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_6653F83EDA73244F4CFE9508EE79E64E"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_UnitOfMeasureType" Multiplicity="0..1" Role="ToRole_assoc_6653F83EDA73244F4CFE9508EE79E64E"/></Association>
+			<Association Name="assoc_C35CBD9C51D8571FC830324A638316AF" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_C35CBD9C51D8571FC830324A638316AF"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_PurcontracttaxcodevhType" Multiplicity="*" Role="ToRole_assoc_C35CBD9C51D8571FC830324A638316AF"/></Association>
+			<Association Name="assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00" sap:content-version="1"><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="1"
+				Role="FromRole_assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"/><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_PurCtrStockTypeType" Multiplicity="1" Role="ToRole_assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"/></Association>
+			<Association Name="assoc_DB810631A7714DE738F8919710AE509C" sap:content-version="1">
+				<End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType" Multiplicity="1"
+					Role="FromRole_assoc_DB810631A7714DE738F8919710AE509C"><OnDelete Action="Cascade"/></End><End Type="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType" Multiplicity="*"
+					Role="ToRole_assoc_DB810631A7714DE738F8919710AE509C"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_DB810631A7714DE738F8919710AE509C"><PropertyRef Name="Guid"/></Principal>
+					<Dependent Role="ToRole_assoc_DB810631A7714DE738F8919710AE509C"><PropertyRef Name="HeaderGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="VWKS_NLP_CCTR_CTR_CREATE_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ContractFieldListSet" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.ContractFieldList" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CCTRDraftIDCollection" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.CCTRDraftID" sap:content-version="1"/><EntitySet Name="xVWKSxNLP_CCTR_C_CNTR_H_CREATE" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="C_CntrlPurContrMaterialVH" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrMaterialVHType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_CntrlPurContrTypeValueHelp" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrTypeValueHelpType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_ContractPrdTypeVH" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_ContractPrdTypeVHType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_Mm_ConfirmationControlVH" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_Mm_ConfirmationControlVHType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_MM_IncotermValueHelp" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_IncotermValueHelpType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_MM_MaterialGroupValueHelp" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_MaterialGroupValueHelpType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_MM_PaymentTermValueHelp" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_PaymentTermValueHelpType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_Mm_Shipinstructionvaluehelp" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_Mm_ShipinstructionvaluehelpType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_MM_SupplierValueHelp" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_CntrlPurContrItmCategoryVH" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_CntrlPurContrItmCategoryVHType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="I_CompanyCodeStdVH" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_CompanyCodeStdVHType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_Currency" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_CurrencyType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_Purcontracttaxcodevh" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_PurcontracttaxcodevhType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_PurCtrStockType" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_PurCtrStockTypeType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_UnitOfMeasure" EntityType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_UnitOfMeasureType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"/><End EntitySet="I_PurCtrStockType" Role="ToRole_assoc_E8B3532B7D1B8D8EA976E24D2CAC9F00"/></AssociationSet>
+				<AssociationSet Name="assoc_C35CBD9C51D8571FC830324A638316AF"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_C35CBD9C51D8571FC830324A638316AF" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_C35CBD9C51D8571FC830324A638316AF"/><End EntitySet="I_Purcontracttaxcodevh" Role="ToRole_assoc_C35CBD9C51D8571FC830324A638316AF"/></AssociationSet>
+				<AssociationSet Name="assoc_FAA34FD56F4D2CA9084F73FFC849E502"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_FAA34FD56F4D2CA9084F73FFC849E502" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"/><End EntitySet="C_MM_MaterialGroupValueHelp" Role="ToRole_assoc_FAA34FD56F4D2CA9084F73FFC849E502"/></AssociationSet>
+				<AssociationSet Name="assoc_6653F83EDA73244F4CFE9508EE79E64E"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_6653F83EDA73244F4CFE9508EE79E64E" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_6653F83EDA73244F4CFE9508EE79E64E"/><End EntitySet="I_UnitOfMeasure" Role="ToRole_assoc_6653F83EDA73244F4CFE9508EE79E64E"/></AssociationSet>
+				<AssociationSet Name="assoc_1756DF8C830919FD80C2147C861CE834"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_1756DF8C830919FD80C2147C861CE834" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_1756DF8C830919FD80C2147C861CE834"/><End EntitySet="C_Mm_Shipinstructionvaluehelp" Role="ToRole_assoc_1756DF8C830919FD80C2147C861CE834"/></AssociationSet>
+				<AssociationSet Name="assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_64A6C860665E5A3D7BBE4C3BFE71DC51" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"/><End EntitySet="C_ContractPrdTypeVH" Role="ToRole_assoc_64A6C860665E5A3D7BBE4C3BFE71DC51"/></AssociationSet>
+				<AssociationSet Name="assoc_A7509BF3AA0E43DB9C91D5489D4FF263"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_A7509BF3AA0E43DB9C91D5489D4FF263" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_A7509BF3AA0E43DB9C91D5489D4FF263"/><End EntitySet="C_Mm_ConfirmationControlVH" Role="ToRole_assoc_A7509BF3AA0E43DB9C91D5489D4FF263"/></AssociationSet>
+				<AssociationSet Name="assoc_DB810631A7714DE738F8919710AE509C"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_DB810631A7714DE738F8919710AE509C" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_H_CREATE" Role="FromRole_assoc_DB810631A7714DE738F8919710AE509C"/><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="ToRole_assoc_DB810631A7714DE738F8919710AE509C"/></AssociationSet>
+				<AssociationSet Name="assoc_504A7D14C1805E5882B355D982E004B2"
+					Association="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.assoc_504A7D14C1805E5882B355D982E004B2" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="xVWKSxNLP_CCTR_C_CNTR_I_CREATE" Role="FromRole_assoc_504A7D14C1805E5882B355D982E004B2"/><End EntitySet="I_UnitOfMeasure" Role="ToRole_assoc_504A7D14C1805E5882B355D982E004B2"/></AssociationSet>
+				<FunctionImport Name="MassChangeContractItems" ReturnType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.ContractFieldList"
+					EntitySet="ContractFieldListSet" m:HttpMethod="POST"><Parameter Name="ItemKey" Type="Edm.Guid" Mode="In"/><Parameter Name="FieldValue" Type="Edm.String" Mode="In" MaxLength="50"/><Parameter Name="FieldName" Type="Edm.String" Mode="In" MaxLength="30"/></FunctionImport>
+				<FunctionImport Name="CreateCentralContractHier" ReturnType="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.CCTRDraftID" EntitySet="CCTRDraftIDCollection"
+					m:HttpMethod="POST"><Parameter Name="PurchaseRequisitionItem" Type="Edm.String" Mode="In" MaxLength="5"/><Parameter Name="PurchaseRequisition" Type="Edm.String" Mode="In" MaxLength="10"/><Parameter Name="ProcurementHubSourceSystem" Type="Edm.String" Mode="In" MaxLength="10"/></FunctionImport>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/Supplier">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Supplier"/><PropertyValue Property="CollectionPath" String="C_MM_SupplierValueHelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Supplier"/><PropertyValue Property="ValueListProperty" String="Supplier"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CompanyCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SupplierName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Country"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CityName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PostalCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Region"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/PurchaseContractType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="View for Contract Type F4 Help in Central Purchase Contract"/><PropertyValue Property="CollectionPath" String="C_CntrlPurContrTypeValueHelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="PurchaseContractType"/><PropertyValue Property="ValueListProperty" String="PurchasingDocumentType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PurchasingDocumentTypeName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation><Annotation Term="Common.ValueListWithFixedValues"/></Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/Currency">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Currency"/><PropertyValue Property="CollectionPath" String="I_Currency"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Currency"/><PropertyValue Property="ValueListProperty" String="Currency"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Currency_Text"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Decimals"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CurrencyISOCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="AlternativeCurrencyKey"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="IsPrimaryCurrencyForISOCrcy"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/PaymentTerms">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Payment Term Value Help"/><PropertyValue Property="CollectionPath" String="C_MM_PaymentTermValueHelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="PaymentTerms"/><PropertyValue Property="ValueListProperty" String="PaymentTerms"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PaymentTermsValidityMonthDay"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PaymentTermsName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PaytTrmsCndnExplanationText"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CashDiscount1Days"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CashDiscount1Percent"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CashDiscount2Days"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CashDiscount2Percent"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="NetPaymentDays"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/Incoterm">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Incoterm Value Help"/><PropertyValue Property="CollectionPath" String="C_MM_IncotermValueHelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Incoterm"/><PropertyValue Property="ValueListProperty" String="IncotermsClassification"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="IncotermsVersion"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="IncotermsClassificationName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="LocationIsMandatory"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/ShippingInstruction">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Shipping Instruction Value Help"/><PropertyValue Property="CollectionPath" String="C_Mm_Shipinstructionvaluehelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="ShippingInstruction"/><PropertyValue Property="ValueListProperty" String="ShippingInstruction"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ShippingInstructionName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OrderPriceUnit">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Unit of Measure"/><PropertyValue Property="CollectionPath" String="I_UnitOfMeasure"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="OrderPriceUnit"/><PropertyValue Property="ValueListProperty" String="UnitOfMeasure"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasure_Text"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureSAPCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureISOCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="IsPrimaryUnitForISOCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureNumberOfDecimals"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureIsCommercial"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureDimension"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnRateNumerator"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnRateDenominator"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnRateExponent"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnAdditiveValue"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureDspExponent"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureDspNmbrOfDcmls"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureTemperature"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureTemperatureUnit"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasurePressure"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasurePressureUnit"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OrderQuantityUnit">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Unit of Measure"/><PropertyValue Property="CollectionPath" String="I_UnitOfMeasure"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="OrderQuantityUnit"/><PropertyValue Property="ValueListProperty" String="UnitOfMeasure"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasure_Text"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureSAPCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureISOCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="IsPrimaryUnitForISOCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureNumberOfDecimals"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureIsCommercial"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureDimension"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnRateNumerator"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnRateDenominator"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnRateExponent"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SIUnitCnvrsnAdditiveValue"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureDspExponent"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureDspNmbrOfDcmls"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureTemperature"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasureTemperatureUnit"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasurePressure"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="UnitOfMeasurePressureUnit"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/MaterialGroup">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Material Group Value Help"/><PropertyValue Property="CollectionPath" String="C_MM_MaterialGroupValueHelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="MaterialGroup"/><PropertyValue Property="ValueListProperty" String="MaterialGroup"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="MaterialGroupText"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="MaterialGroupName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/Purchasingdocumentitemcategory">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Central Purchase Contract Item Category Value Help"/><PropertyValue Property="CollectionPath" String="I_CntrlPurContrItmCategoryVH"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Purchasingdocumentitemcategory"/><PropertyValue Property="ValueListProperty" String="PurchasingDocumentItemCategory"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PurchasingDocumentType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PurchasingDocumentCategory"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PurchasingDocumentItemCategory_Text"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation><Annotation Term="Common.ValueListWithFixedValues"/></Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/SupplierConfirmationControlKey">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Confirmation Control Value Help"/><PropertyValue Property="CollectionPath" String="C_Mm_ConfirmationControlVH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="SupplierConfirmationControlKey"/><PropertyValue Property="ValueListProperty" String="SupplierConfirmationControlKey"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SupplierConfControlKeyName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/StockType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Purchase Contract Stock Type"/><PropertyValue Property="CollectionPath" String="I_PurCtrStockType"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="StockType"/><PropertyValue Property="ValueListProperty" String="StockType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Language"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="StockTypeName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/TaxCode">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Tax code for Contract Item"/><PropertyValue Property="CollectionPath" String="I_Purcontracttaxcodevh"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="TaxCode"/><PropertyValue Property="ValueListProperty" String="TaxCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TaxCalculationProcedure"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Language"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TaxCodeName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/ShippingInstruction">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Shipping Instruction Value Help"/><PropertyValue Property="CollectionPath" String="C_Mm_Shipinstructionvaluehelp"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="ShippingInstruction"/><PropertyValue Property="ValueListProperty" String="ShippingInstruction"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ShippingInstructionName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/ProductType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Value help for Product Type Group"/><PropertyValue Property="CollectionPath" String="C_ContractPrdTypeVH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="ProductType"/><PropertyValue Property="ValueListProperty" String="ProductType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ProductTypeName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/CompanyCode">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Company Code"/><PropertyValue Property="CollectionPath" String="I_CompanyCodeStdVH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="CompanyCode"/><PropertyValue Property="ValueListProperty" String="CompanyCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CompanyCodeName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.VWKS_NLP_CCTR_CTR_CREATE_SRV_01_Entities"><Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.VWKS_NLP_CCTR_CTR_CREATE_SRV_01_Entities/xVWKSxNLP_CCTR_C_CNTR_I_CREATE">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>ContractNetPriceAmount_fc</PropertyPath>
+								<PropertyPath>EvalDrcptSettlmtIsAllowed_fc</PropertyPath>
+								<PropertyPath>GoodsReceiptIsExpected_fc</PropertyPath>
+								<PropertyPath>GoodsReceiptIsNonValuated_fc</PropertyPath>
+								<PropertyPath>InvoiceIsExpected_fc</PropertyPath>
+								<PropertyPath>InvoiceIsGoodsReceiptBased_fc</PropertyPath>
+								<PropertyPath>IsInfoAtRegistration_fc</PropertyPath>
+								<PropertyPath>IsOrderAcknRqd_fc</PropertyPath>
+								<PropertyPath>ItemTargetAmount_fc</PropertyPath>
+								<PropertyPath>MaterialGroup_fc</PropertyPath>
+								<PropertyPath>NetPriceQuantity_fc</PropertyPath>
+								<PropertyPath>NoDaysReminder1_fc</PropertyPath>
+								<PropertyPath>NoDaysReminder2_fc</PropertyPath>
+								<PropertyPath>NoDaysReminder3_fc</PropertyPath>
+								<PropertyPath>OrderPriceUnit_fc</PropertyPath>
+								<PropertyPath>OrderQuantityUnit_fc</PropertyPath>
+								<PropertyPath>OrdPriceUnitToOrderUnitNmrtr_fc</PropertyPath>
+								<PropertyPath>OrdPriceUnitToOrderUnitDnmntr_fc</PropertyPath>
+								<PropertyPath>OverdelivTolrtdLmtRatioInPct_fc</PropertyPath>
+								<PropertyPath>PriceIsTobBePrinted_fc</PropertyPath>
+								<PropertyPath>ProductType_fc</PropertyPath>
+								<PropertyPath>PurchaseContractItemText_fc</PropertyPath>
+								<PropertyPath>Purchasingcentralmaterial_fc</PropertyPath>
+								<PropertyPath>Purchasingdocumentitemcategory_fc</PropertyPath>
+								<PropertyPath>PurgDocEstimatedPrice_fc</PropertyPath>
+								<PropertyPath>PurgDocOrderAcknNumber_fc</PropertyPath>
+								<PropertyPath>PurgDocReleaseOrderQuantity_fc</PropertyPath>
+								<PropertyPath>RequirementTracking_fc</PropertyPath>
+								<PropertyPath>ShippingInstruction_fc</PropertyPath>
+								<PropertyPath>StockType_fc</PropertyPath>
+								<PropertyPath>SupplierConfirmationControlKey_fc</PropertyPath>
+								<PropertyPath>SupplierMaterialNumber_fc</PropertyPath>
+								<PropertyPath>TargetQuantity_fc</PropertyPath>
+								<PropertyPath>TaxCode_fc</PropertyPath>
+								<PropertyPath>UnderdelivTolrtdLmtRatioInPct_fc</PropertyPath>
+								<PropertyPath>UnlimitedOverdeliveryIsAllowed_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ContractNetPriceAmount_fc</PropertyPath>
+								<PropertyPath>EvalDrcptSettlmtIsAllowed_fc</PropertyPath>
+								<PropertyPath>GoodsReceiptIsExpected_fc</PropertyPath>
+								<PropertyPath>GoodsReceiptIsNonValuated_fc</PropertyPath>
+								<PropertyPath>InvoiceIsExpected_fc</PropertyPath>
+								<PropertyPath>InvoiceIsGoodsReceiptBased_fc</PropertyPath>
+								<PropertyPath>IsInfoAtRegistration_fc</PropertyPath>
+								<PropertyPath>IsOrderAcknRqd_fc</PropertyPath>
+								<PropertyPath>ItemTargetAmount_fc</PropertyPath>
+								<PropertyPath>MaterialGroup_fc</PropertyPath>
+								<PropertyPath>NetPriceQuantity_fc</PropertyPath>
+								<PropertyPath>NoDaysReminder1_fc</PropertyPath>
+								<PropertyPath>NoDaysReminder2_fc</PropertyPath>
+								<PropertyPath>NoDaysReminder3_fc</PropertyPath>
+								<PropertyPath>OrderPriceUnit_fc</PropertyPath>
+								<PropertyPath>OrderQuantityUnit_fc</PropertyPath>
+								<PropertyPath>OrdPriceUnitToOrderUnitNmrtr_fc</PropertyPath>
+								<PropertyPath>OrdPriceUnitToOrderUnitDnmntr_fc</PropertyPath>
+								<PropertyPath>OverdelivTolrtdLmtRatioInPct_fc</PropertyPath>
+								<PropertyPath>PriceIsTobBePrinted_fc</PropertyPath>
+								<PropertyPath>ProductType_fc</PropertyPath>
+								<PropertyPath>PurchaseContractItemText_fc</PropertyPath>
+								<PropertyPath>Purchasingcentralmaterial_fc</PropertyPath>
+								<PropertyPath>Purchasingdocumentitemcategory_fc</PropertyPath>
+								<PropertyPath>PurgDocEstimatedPrice_fc</PropertyPath>
+								<PropertyPath>PurgDocOrderAcknNumber_fc</PropertyPath>
+								<PropertyPath>PurgDocReleaseOrderQuantity_fc</PropertyPath>
+								<PropertyPath>RequirementTracking_fc</PropertyPath>
+								<PropertyPath>ShippingInstruction_fc</PropertyPath>
+								<PropertyPath>StockType_fc</PropertyPath>
+								<PropertyPath>SupplierConfirmationControlKey_fc</PropertyPath>
+								<PropertyPath>SupplierMaterialNumber_fc</PropertyPath>
+								<PropertyPath>TargetQuantity_fc</PropertyPath>
+								<PropertyPath>TaxCode_fc</PropertyPath>
+								<PropertyPath>UnderdelivTolrtdLmtRatioInPct_fc</PropertyPath>
+								<PropertyPath>UnlimitedOverdeliveryIsAllowed_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrTypeValueHelpType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>PurchasingDocumentType</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_IncotermValueHelpType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>IncotermsClassification</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_MaterialGroupValueHelpType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>MaterialGroup</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_PaymentTermValueHelpType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>PaymentTermsValidityMonthDay</PropertyPath>
+						<PropertyPath>PaymentTerms</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>CompanyCode</PropertyPath>
+						<PropertyPath>Supplier</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_Mm_ConfirmationControlVHType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>SupplierConfirmationControlKey</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_Mm_ShipinstructionvaluehelpType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>ShippingInstruction</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_CurrencyType/Currency"><Annotation Term="Common.UnitSpecificScale" Path="Decimals"/></Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.I_UnitOfMeasureType/UnitOfMeasure"><Annotation Term="Common.UnitSpecificScale" Path="UnitOfMeasureDspNmbrOfDcmls"/></Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.VWKS.NLP_CCTR_CTR_CREATE_SRV_01_Entities">
+				<Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+					<Record Type="Org.OData.Capabilities.V1.BatchSupportType"><PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/></Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/vwks/NLP_CCTR_CTR_CREATE_SRV_01/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://ldcix31.wdf.sap.corp:44311/sap/opu/odata/vwks/NLP_CCTR_CTR_CREATE_SRV_01/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

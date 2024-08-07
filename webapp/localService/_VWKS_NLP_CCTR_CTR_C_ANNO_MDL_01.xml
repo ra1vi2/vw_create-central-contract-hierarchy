@@ -1,0 +1,146 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1"/></edmx:Reference>
+	<edmx:Reference Uri="../../../vwks/nlp_cctr_ctr_create_srv_01/$metadata"><edmx:Include Namespace="NLP_CCTR_CTR_CREATE_SRV_01" Alias="SAP"/></edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="com.sap.vwks.nlp_cctr_ctr_c_anno_mdl_01.v1">
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/Guid"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/CreatedByUser"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/CurrencyName"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/IncotermsClassificationName"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/PaymentTermsName"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/Currency">
+				<Annotation Term="Common.Text" Path="CurrencyName"><Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/></Annotation>
+			</Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/PaymentTerms">
+				<Annotation Term="Common.Text" Path="PaymentTermsName"><Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/></Annotation>
+			</Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType/Incoterm">
+				<Annotation Term="Common.Text" Path="IncotermsClassificationName"><Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/></Annotation>
+			</Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_H_CREATEType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="General Information"/><PropertyValue Property="ID" String="GeneralInformation"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification"/></Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Items"/><PropertyValue Property="ID" String="Items"/><PropertyValue Property="Target" AnnotationPath="to_Items/@UI.LineItem#MyInbox_Items"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Supplier"/><PropertyValue Property="Value" Path="Supplier"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Process Indicator"/><PropertyValue Property="Value" Path="AP_Material"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Contract Type"/><PropertyValue Property="Value" Path="PurchaseContractType"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Central Purchase Contract Description"/><PropertyValue Property="Value" Path="ContractDescription"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Valid From"/><PropertyValue Property="Value" Path="ValidityStartDate"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Valid To"/><PropertyValue Property="Value" Path="ValidityEndDate"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Document Currency"/><PropertyValue Property="Value" Path="Currency"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Target Amount"/><PropertyValue Property="Value" Path="PurchaseContractTargetAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Incoterms Classification"/><PropertyValue Property="Value" Path="Incoterm"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Target Quantity"/><PropertyValue Property="Value" Path="TargetQuantity"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Payment Terms"/><PropertyValue Property="Value" Path="PaymentTerms"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/Guid"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/HeaderGuid"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/CreatedByUser"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/Plant"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/ContractNetPriceAmount_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/EvalDrcptSettlmtIsAllowed_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/GoodsReceiptIsExpected_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/GoodsReceiptIsNonValuated_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/InvoiceIsExpected_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/InvoiceIsGoodsReceiptBased_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/IsInfoAtRegistration_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/IsOrderAcknRqd_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/ItemTargetAmount_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/MaterialGroup_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/NetPriceQuantity_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/NoDaysReminder1_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/NoDaysReminder2_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/NoDaysReminder3_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OrderPriceUnit_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OrderQuantityUnit_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OrdPriceUnitToOrderUnitNmrtr_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OrdPriceUnitToOrderUnitDnmntr_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/OverdelivTolrtdLmtRatioInPct_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/PriceIsTobBePrinted_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/ProductType_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/PurchaseContractItemText_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/Purchasingcentralmaterial_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/Purchasingdocumentitemcategory_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/PurgDocEstimatedPrice_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/PurgDocOrderAcknNumber_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/PurgDocReleaseOrderQuantity_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/RequirementTracking_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/ShippingInstruction_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/StockType_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/SupplierConfirmationControlKey_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/SupplierMaterialNumber_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/TargetQuantity_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/TaxCode_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/UnderdelivTolrtdLmtRatioInPct_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType/UnlimitedOverdeliveryIsAllowed_fc"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.xVWKSxNLP_CCTR_C_CNTR_I_CREATEType">
+				<Annotation Term="UI.DataPoint" Qualifier="CntrlPurContrGRConsumptionPct">
+					<Record><PropertyValue Property="Value" Path="CntrlPurContrGRConsumptionPct"/><PropertyValue Property="Title" String="GR Consumption Percentage"/><PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress"/></Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="ContractConsumptionInPct">
+					<Record><PropertyValue Property="Value" Path="ContractConsumptionInPct"/><PropertyValue Property="Title" String="Consumption Percentage"/><PropertyValue Property="TargetValue" Path="ContractConsumptionInPct"/><PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress"/></Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem" Qualifier="MyInbox_Items">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="PurchasingDocument"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Purchasingcentralmaterial"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ContractNetPriceAmount"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="MaterialGroup"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="NetPriceQuantity"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrMaterialVHType/OpnCtlgItemID"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrMaterialVHType/Language"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrMaterialVHType/CompanyCode"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrMaterialVHType/OpnCtlgWebServiceID"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_CntrlPurContrMaterialVHType/IsBusinessPurposeCompleted"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/SortField"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/FirstName"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/LastName"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/OrganizationBPName1"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/OrganizationBPName2"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/OrganizationBPName3"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/OrganizationBPName4"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/AuthorizationGroup"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType/SupplierAccountGroup"><Annotation Term="UI.Hidden"/></Annotations>
+			<Annotations Target="VWKS.NLP_CCTR_CTR_CREATE_SRV_01.C_MM_SupplierValueHelpType">
+				<Annotation Term="Communication.Contact">
+					<Record>
+						<PropertyValue Property="adr">
+							<Collection>
+								<Record><PropertyValue Property="type" EnumMember="Communication.ContactInformationType/preferred"/><PropertyValue Property="country" Path="Country"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Communication.Address" Qualifier="pref">
+					<Record><PropertyValue Property="type" EnumMember="Communication.ContactInformationType/preferred"/><PropertyValue Property="country" Path="Country"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="_Entities">
+				<Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+					<Record Type="Org.OData.Capabilities.V1.BatchSupportType"><PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/></Record>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

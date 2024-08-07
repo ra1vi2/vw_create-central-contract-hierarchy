@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/opu/odata/vwks/NLP_CCTR_CTR_CREATE_SRV_01/$metadata">
+		<edmx:Include Alias="Metadata" Namespace="VWKS.NLP_CCTR_CTR_CREATE_SRV_01"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="vwks.nlp.s2p.mm.ctrhcentral.create.NLP_CCTR_CTR_CREATE_SRV_01">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<!--===============================================================================
+                Entity Type from chosen navigation property
+                ================================================================================-->
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+{
+	"fileName": "id_1609339327601_153_propertyChange",
+	"fileType": "change",
+	"changeType": "propertyChange",
+	"moduleName": "",
+	"reference": "vwks.nlp.s2p.mm.ctrhcentral.create.Component",
+	"packageName": "$TMP",
+	"content": {
+		"property": "mode",
+		"newValue": "MultiSelect"
+	},
+	"selector": {
+		"id": "vwks.nlp.s2p.mm.ctrhcentral.create::sap.suite.ui.generic.template.ObjectPage.view.Details::xVWKSxNLP_CCTR_C_CNTR_H_CREATE--Items::responsiveTable",
+		"type": "sap.m.Table",
+		"idIsLocal": false
+	},
+	"layer": "VENDOR",
+	"texts": {},
+	"namespace": "apps/vwks.nlp.s2p.mm.ctrhcentral.create/changes/",
+	"projectId": "vwks.nlp.s2p.mm.ctrhcentral.create",
+	"creation": "2020-12-30T14:42:10.604Z",
+	"originalLanguage": "EN",
+	"support": {
+		"generator": "sap.ui.rta FlexCommand",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.85.0",
+		"sourceChangeFileName": "",
+		"compositeCommand": "",
+		"command": "property"
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}
